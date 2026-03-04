@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: customer-rewards
+  datasource:
+    url: jdbc:h2:mem:rewardsdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  h2:
+    console:
+      enabled: true
