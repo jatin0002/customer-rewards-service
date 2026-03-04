@@ -12,6 +12,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transactionId;
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
     private LocalDate transactionDate;
     private Long customerId;
