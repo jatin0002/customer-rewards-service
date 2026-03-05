@@ -11,12 +11,35 @@ public class DateRangeResolver {
 
     private static final Logger log = LoggerFactory.getLogger(DateRangeResolver.class);
 
-    public static DateRange resolve(LocalDate startDate, LocalDate endDate) {
+    private final static Integer DEFAULT_MONTH = 3;
 
-        if (startDate == null && endDate == null) {
-            log.info("No date range provided. Defaulting to last 3 months.");
-            return defaultLastThreeMonths();
+    public static DateRange resolve(Integer noOfMonths, LocalDate startDate, LocalDate endDate) {
+
+        if (noOfMonths == null && startDate == null && endDate == null) {
+            log.info("No date range provided. Defaulting to last {} months.", DEFAULT_MONTH);
+            return customDateRangeGeneratorByMonths(DEFAULT_MONTH);
         }
+
+        if (noOfMonths != null) {
+
+            if (startDate != null || endDate != null) {
+                log.warn("Invalid request: noOfMonth cannot be used with startDate/endDate");
+                throw new InvalidDateRangeException(
+                        "Provide either 'noOfMonth' OR 'startDate and endDate', not both."
+                );
+            }
+
+            if (noOfMonths <= 0) {
+                log.warn("Invalid number of month value: {}", noOfMonths);
+                throw new InvalidDateRangeException(
+                        "noOfMonth must be greater than 0"
+                );
+            }
+
+            log.debug("Generating date range for {} of months", noOfMonths);
+            return customDateRangeGeneratorByMonths(noOfMonths);
+        }
+
 
         if (startDate == null || endDate == null) {
             log.warn("Invalid date range provided: startDate={}, endDate={}", startDate, endDate);
@@ -36,10 +59,10 @@ public class DateRangeResolver {
         return new DateRange(startDate, endDate);
     }
 
-    private static DateRange defaultLastThreeMonths() {
+    private static DateRange customDateRangeGeneratorByMonths(Integer noOfMonths) {
 
         LocalDate endDate = LocalDate.now();
-        LocalDate startDate = endDate.minusMonths(3);
+        LocalDate startDate = endDate.minusMonths(noOfMonths);
 
         return new DateRange(startDate, endDate);
     }

@@ -38,10 +38,13 @@ public class RewardController {
 
             @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            LocalDate endDate
+            LocalDate endDate,
+
+            @RequestParam(required = false)
+            Integer noOfMonths
     ) {
 
-        DateRange dateRange = DateRangeResolver.resolve(startDate, endDate);
+        DateRange dateRange = DateRangeResolver.resolve(noOfMonths, startDate, endDate);
 
         log.info("Fetching rewards for customerId={} from {} to {}",
                 customerId, dateRange.startDate(), dateRange.endDate());
