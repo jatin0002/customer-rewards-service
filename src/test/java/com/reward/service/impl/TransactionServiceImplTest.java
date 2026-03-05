@@ -1,4 +1,4 @@
-package com.reward.impl;
+package com.reward.service.impl;
 
 import com.reward.dto.DateRange;
 import com.reward.dto.RewardDTO;

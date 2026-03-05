@@ -1,0 +1,6 @@
+{
+  "timestamp": "2026-03-05T16:06:35.246364",
+  "error": "startDate must be less than or equal to endDate",
+  "status": 400,
+  "path": "/api/rewards/1?startDate=2026-05-01&endDate=2026-03-01"
+}

@@ -1,0 +1,6 @@
+{
+  "timestamp": "2026-03-05T16:05:08.3644",
+  "error": "Invalid Date Format, Date must be in ISO format yyyy-MM-dd",
+  "status": 400,
+  "path": "/api/rewards/1?startDate=2026%2F01%2F01&endDate=2026%2F03%2F01"
+}

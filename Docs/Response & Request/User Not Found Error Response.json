@@ -1,0 +1,6 @@
+{
+  "timestamp": "2026-03-05T16:03:40.188552",
+  "error": "Customer not found with id: 99",
+  "status": 404,
+  "path": "/api/rewards/99"
+}
