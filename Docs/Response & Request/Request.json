@@ -1,8 +1,0 @@
-{
-  "method": "GET",
-  "endpoint": "/api/rewards/1",
-  "queryParams": {
-    "startDate": "2026-01-01",
-    "endDate": "2026-03-31"
-  }
-}
